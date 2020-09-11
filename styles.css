@@ -2,32 +2,46 @@
 
 body,
 html {
+  height: 100vh;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   height: 100%;
   background-color: #ded0d0;
   color: #353535;
+  display: flex;
+  justify-content: center;
+}
+
+ol,
+li {
+  padding: 0;
+  margin: 0;
 }
 
 #main-wrapper {
-  padding: 3em;
-  /* height: 100%; */
+  min-width: 60vw;
 
+  /* margin: 0 2em; */
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
 }
 
 #time {
-  width: 236px;
-  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1em;
+  width: 100%;
+  /* height: 70px; */
   font-family: "Roboto Mono", monospace;
   font-style: normal;
   font-weight: bold;
-  font-size: 49px;
+  font-size: 63px;
   line-height: 57px;
+  margin-bottom: 1rem;
 }
 
 #start-btn {
@@ -56,6 +70,58 @@ button:focus {
   font-weight: bold;
   font-size: 30px;
   line-height: 40px;
-  /* identical to box height */
   color: #e9e3e2;
+}
+
+#times-list-wrapper {
+  /* padding: 10px; */
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  margin-top: 3rem;
+  /* padding: 10px 0; */
+  width: 100%;
+  border-radius: 2em;
+  background-color: #e9dfdf;
+  max-width: 600px;
+  min-height: 100px;
+}
+
+#times-list-wrapper ol {
+  padding: 10px 0;
+  width: inherit;
+  /* margin-bottom: 10px; */
+}
+
+#times-list-wrapper ol li {
+  font-family: "Roboto Mono", monospace;
+  margin: 0;
+  padding: 0 20px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  /* line-height: 35px; */
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.result-time {
+  color: blue;
+}
+
+.remove {
+  color: #b49494;
+}
+
+#calculation {
+  font-family: "sans";
+  color: blue;
+  padding-top: 10px;
+  margin-left: 20px;
+  border-top: 1px solid #b49494;
+  font-size: 1.1em;
+  margin-bottom: 10px;
 }
