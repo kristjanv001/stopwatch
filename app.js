@@ -43,10 +43,10 @@ function renderStopwatch() {
   )}:${getDisplayTimes(seconds)}`;
 }
 
-// event listener
+// event listeners
 startBtn.addEventListener("click", () => {
   if (!stopwatchId) {
-    stopwatchId = setInterval(startStopwatch, 1000);
+    stopwatchId = setInterval(startStopwatch, 1);
     startBtn.className = "start-btn-started";
     startBtnText.innerText = "STOP";
     console.log("stopwatch started");
@@ -58,6 +58,7 @@ startBtn.addEventListener("click", () => {
     seconds = 0;
     minutes = 0;
     hours = 0;
+    timeText.innerText = `00:00:00`;
     startBtn.className = "start-btn-stopped";
     startBtnText.innerText = "START";
     console.log("stopwatch stopped");
@@ -66,7 +67,18 @@ startBtn.addEventListener("click", () => {
 
 // PART II
 
+timesList.addEventListener("click", (e) => {
+  if (e.target.className === "result-time") {
+    removeTimeFromList(e);
+  }
+});
+
 const results = [];
+
+// remove item
+function removeTimeFromList(e) {
+  e.target.parentNode.remove();
+}
 
 // push results fn
 function pushResultToTimesList(result) {
@@ -79,17 +91,14 @@ function renderTimesList() {
     <li>
         <span class="result-time">${getDisplayTimes(hours)}:${getDisplayTimes(
     minutes
-  )}:${getDisplayTimes(seconds)}</span>
-        <span class="remove">&#x2a2f;</span>
+  )}:${getDisplayTimes(seconds)}</span>    
     </li>`;
 
   timesList.insertAdjacentHTML("afterbegin", li);
 }
 
-/* timesList.appendChild(`
-    <li>
-        <span class="result-time">${result.hours}:${result.minutes}:${result.seconds}</span>
-        <span class="remove">&#x2a2f;</span>
-    </li>`); */
+function removeTimes() {
+  console.log("removed");
+}
 
-// let li = document.createElement("li");
+// <a class="remove">&#x2a2f;</a>

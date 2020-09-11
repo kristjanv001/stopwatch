@@ -2,7 +2,7 @@
 
 body,
 html {
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -74,18 +74,20 @@ button:focus {
 }
 
 #times-list-wrapper {
+  /* height: 100%; */
+  width: 100%;
+  max-width: 600px;
+  /* min-height: 100px; */
   /* padding: 10px; */
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
   margin-top: 3rem;
+  margin-bottom: 3rem;
   /* padding: 10px 0; */
-  width: 100%;
   border-radius: 2em;
   background-color: #e9dfdf;
-  max-width: 600px;
-  min-height: 100px;
 }
 
 #times-list-wrapper ol {
@@ -105,16 +107,17 @@ button:focus {
   list-style-type: none;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 
 .result-time {
-  color: blue;
+  color: #353535;
 }
 
-.remove {
+/* .remove {
+  padding-left: 10px;
   color: #b49494;
-}
+} */
 
 #calculation {
   font-family: "sans";
