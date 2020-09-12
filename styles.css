@@ -84,7 +84,7 @@ button:focus {
   justify-content: flex-start;
   flex-direction: column;
   margin-top: 3rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   /* padding: 10px 0; */
   border-radius: 2em;
   background-color: #e9dfdf;
@@ -101,7 +101,7 @@ button:focus {
   margin: 0;
   padding: 0 20px;
   font-style: normal;
-  font-weight: bold;
+  /* font-weight: bold; */
   font-size: 20px;
   /* line-height: 35px; */
   list-style-type: none;
@@ -112,6 +112,7 @@ button:focus {
 
 .result-time {
   color: #353535;
+  cursor: pointer;
 }
 
 /* .remove {
@@ -121,10 +122,13 @@ button:focus {
 
 #calculation {
   font-family: "sans";
-  color: blue;
+  color: #353535;
   padding-top: 10px;
-  margin-left: 20px;
-  border-top: 1px solid #b49494;
+  padding: 10px 20px;
+  /* border-top: 2px solid #ded0d0; */
   font-size: 1.1em;
   margin-bottom: 10px;
+  font-weight: bold;
 }
+
+/*  */

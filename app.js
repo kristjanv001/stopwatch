@@ -2,6 +2,7 @@ const startBtn = document.getElementById("start-btn");
 const startBtnText = document.getElementById("start-btn-text");
 const timeText = document.getElementById("time-text");
 const timesList = document.getElementById("times-list");
+const calculationDiv = document.getElementById("calculation");
 
 let seconds = 0;
 let minutes = 0;
@@ -51,8 +52,10 @@ startBtn.addEventListener("click", () => {
     startBtnText.innerText = "STOP";
     console.log("stopwatch started");
   } else {
+    // make this into a fn that converts it all to seconds
     pushResultToTimesList({ seconds: seconds, minutes: minutes, hours: hours });
     renderTimesList();
+    calculateAndRenderTotal();
     clearInterval(stopwatchId);
     stopwatchId = null;
     seconds = 0;
@@ -88,17 +91,42 @@ function pushResultToTimesList(result) {
 // render list fn
 function renderTimesList() {
   let li = `
-    <li>
-        <span class="result-time">${getDisplayTimes(hours)}:${getDisplayTimes(
-    minutes
-  )}:${getDisplayTimes(seconds)}</span>    
+    <li >
+        <span title="click to remove" class="result-time">${getDisplayTimes(
+          hours
+        )}:${getDisplayTimes(minutes)}:${getDisplayTimes(seconds)}</span>    
     </li>`;
-
   timesList.insertAdjacentHTML("afterbegin", li);
 }
 
-function removeTimes() {
-  console.log("removed");
+function calculateAndRenderTotal() {
+  let secondsTotal = 0;
+  let minutesTotal = 0;
+  let hoursTotal = 0;
+
+  results.forEach((result) => {
+    secondsTotal += result.seconds;
+    minutesTotal += result.minutes;
+    hoursTotal += result.hours;
+
+    if (secondsTotal >= 60) {
+      minutesTotal += Math.floor(secondsTotal / 60);
+      secondsTotal -= 60;
+    }
+
+    if (minutesTotal >= 60) {
+      hoursTotal += Math.floor(minutesTotal / 60);
+      minutesTotal -= 60;
+    }
+  });
+
+  calculationDiv.innerHTML = `
+  <span>
+  ${hoursTotal}h
+  ${minutesTotal}m and 
+  ${secondsTotal}s
+  </span>`;
 }
 
 // <a class="remove">&#x2a2f;</a>
+//  <a href="#" title="Sample tooltip" class="tooltip">Link</a>
