@@ -69,7 +69,7 @@ function toggleButtonState(state) {
 startBtn.addEventListener("click", () => {
   // stopwatch starts
   if (!stopwatchId) {
-    stopwatchId = setInterval(startStopwatch, 1);
+    stopwatchId = setInterval(startStopwatch, 1000);
     toggleButtonState("started");
     // stopwatch stops
   } else {
