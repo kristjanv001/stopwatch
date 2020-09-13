@@ -44,43 +44,87 @@ function renderStopwatch() {
   )}:${getDisplayTimes(seconds)}`;
 }
 
-// event listeners
-startBtn.addEventListener("click", () => {
-  if (!stopwatchId) {
-    stopwatchId = setInterval(startStopwatch, 1);
+// reset
+function stopStopwatchAndResetNumbers() {
+  clearInterval(stopwatchId);
+  stopwatchId = null;
+  seconds = 0;
+  minutes = 0;
+  hours = 0;
+  timeText.innerText = `00:00:00`;
+}
+
+// button class and name
+function toggleButtonState(state) {
+  if (state === "started") {
     startBtn.className = "start-btn-started";
     startBtnText.innerText = "STOP";
-    console.log("stopwatch started");
   } else {
-    // make this into a fn that converts it all to seconds
-    pushResultToTimesList({ seconds: seconds, minutes: minutes, hours: hours });
-    renderTimesList();
-    calculateAndRenderTotal();
-    clearInterval(stopwatchId);
-    stopwatchId = null;
-    seconds = 0;
-    minutes = 0;
-    hours = 0;
-    timeText.innerText = `00:00:00`;
     startBtn.className = "start-btn-stopped";
     startBtnText.innerText = "START";
-    console.log("stopwatch stopped");
+  }
+}
+
+// event listeners
+startBtn.addEventListener("click", () => {
+  // stopwatch starts
+  if (!stopwatchId) {
+    stopwatchId = setInterval(startStopwatch, 1);
+    toggleButtonState("started");
+    // stopwatch stops
+  } else {
+    renderTimesList();
+    calculateAndRenderTotal();
+    stopStopwatchAndResetNumbers();
+    toggleButtonState("stopped");
   }
 });
 
 // PART II
 
+let results = [];
+
+// l ievent listener on removeing item
 timesList.addEventListener("click", (e) => {
   if (e.target.className === "result-time") {
     removeTimeFromList(e);
+    removeItemFromArray(e.target.parentNode.id);
+    calculateAndRenderTotal();
+    if (!results.length) {
+      calculationDiv.innerHTML = "";
+    }
   }
 });
-
-const results = [];
 
 // remove item
 function removeTimeFromList(e) {
   e.target.parentNode.remove();
+}
+
+// remove from array
+function removeItemFromArray(id) {
+  results = results.filter((result) => {
+    return result.id != id;
+  });
+}
+
+// render list fn
+function renderTimesList() {
+  let randomIdentifier = Math.random();
+  let li = `
+    <li id=${randomIdentifier}>
+        <span title="click to remove" class="result-time">${getDisplayTimes(
+          hours
+        )}:${getDisplayTimes(minutes)}:${getDisplayTimes(seconds)}</span>    
+    </li>`;
+  timesList.insertAdjacentHTML("afterbegin", li);
+
+  pushResultToTimesList({
+    id: randomIdentifier,
+    seconds: seconds,
+    minutes: minutes,
+    hours: hours,
+  });
 }
 
 // push results fn
@@ -88,17 +132,7 @@ function pushResultToTimesList(result) {
   results.push(result);
 }
 
-// render list fn
-function renderTimesList() {
-  let li = `
-    <li >
-        <span title="click to remove" class="result-time">${getDisplayTimes(
-          hours
-        )}:${getDisplayTimes(minutes)}:${getDisplayTimes(seconds)}</span>    
-    </li>`;
-  timesList.insertAdjacentHTML("afterbegin", li);
-}
-
+// calc and render total
 function calculateAndRenderTotal() {
   let secondsTotal = 0;
   let minutesTotal = 0;
@@ -119,6 +153,7 @@ function calculateAndRenderTotal() {
       minutesTotal -= 60;
     }
   });
+  console.log(results.length);
 
   calculationDiv.innerHTML = `
   <span>
@@ -127,6 +162,3 @@ function calculateAndRenderTotal() {
   ${secondsTotal}s
   </span>`;
 }
-
-// <a class="remove">&#x2a2f;</a>
-//  <a href="#" title="Sample tooltip" class="tooltip">Link</a>
