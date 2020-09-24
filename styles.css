@@ -1,5 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
 
+:root {
+  --main-bg: #515070;
+  --main-color: #ffbb91;
+  --button-bg-stopped: #7d7ca2;
+  --button-bg-started: #ff6347;
+  --white-color: #e9e3e2;
+  --dark-text: #353535;
+}
+
 body,
 html {
   min-height: 100vh;
@@ -7,10 +16,11 @@ html {
   padding: 0;
   box-sizing: border-box;
   height: 100%;
-  background-color: #ded0d0;
-  color: #353535;
+  background-color: var(--main-bg);
+  color: var(--main-color);
   display: flex;
   justify-content: center;
+  font-family: "Roboto Mono", monospace;
 }
 
 ol,
@@ -20,9 +30,7 @@ li {
 }
 
 #main-wrapper {
-  min-width: 60vw;
-
-  /* margin: 0 2em; */
+  min-width: 90vw;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -35,8 +43,6 @@ li {
   align-items: center;
   padding-top: 1em;
   width: 100%;
-  /* height: 70px; */
-  font-family: "Roboto Mono", monospace;
   font-style: normal;
   font-weight: bold;
   font-size: 63px;
@@ -53,12 +59,18 @@ li {
   cursor: pointer;
 }
 
+#start-btn:hover {
+  position: relative;
+  top: 1px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+}
+
 .start-btn-stopped {
-  background: #b49494;
+  background: var(--button-bg-stopped);
 }
 
 .start-btn-started {
-  background: tomato;
+  background: var(--button-bg-started);
 }
 
 button:focus {
@@ -70,65 +82,59 @@ button:focus {
   font-weight: bold;
   font-size: 30px;
   line-height: 40px;
-  color: #e9e3e2;
+  color: var(--white-color);
 }
 
-#times-list-wrapper {
-  /* height: 100%; */
+.times-list-wrapper {
+  border-bottom: 11px solid var(--main-color);
+  border-top: 11px solid var(--main-color);
   width: 100%;
   max-width: 600px;
-  /* min-height: 100px; */
-  /* padding: 10px; */
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
   margin-top: 3rem;
   margin-bottom: 2rem;
-  /* padding: 10px 0; */
-  border-radius: 2em;
-  background-color: #e9dfdf;
+  border-radius: 0.5em;
+  background-color: var(--white-color);
+  /* height: 100vh; */
+}
+
+.hide-element {
+  display: none;
 }
 
 #times-list-wrapper ol {
   padding: 10px 0;
   width: inherit;
-  /* margin-bottom: 10px; */
 }
 
 #times-list-wrapper ol li {
-  font-family: "Roboto Mono", monospace;
   margin: 0;
   padding: 0 20px;
   font-style: normal;
-  /* font-weight: bold; */
   font-size: 20px;
-  /* line-height: 35px; */
   list-style-type: none;
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
 }
 
 .result-time {
-  color: #353535;
+  color: var(--dark-text);
   cursor: pointer;
 }
 
-/* .remove {
-  padding-left: 10px;
-  color: #b49494;
-} */
-
 #calculation {
   font-family: "sans";
-  color: #353535;
+  color: var(--dark-text);
   padding-top: 10px;
   padding: 10px 20px;
   /* border-top: 2px solid #ded0d0; */
   font-size: 1.1em;
   margin-bottom: 10px;
-  font-weight: bold;
 }
 
-/*  */
+.calculation-total {
+  font-weight: bold;
+}

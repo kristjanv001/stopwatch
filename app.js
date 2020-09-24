@@ -2,6 +2,7 @@ const startBtn = document.getElementById("start-btn");
 const startBtnText = document.getElementById("start-btn-text");
 const timeText = document.getElementById("time-text");
 const timesList = document.getElementById("times-list");
+const timesListWrapper = document.getElementById("times-list-wrapper");
 const calculationDiv = document.getElementById("calculation");
 
 let seconds = 0;
@@ -16,7 +17,7 @@ timeText.innerText = `00:00:00`;
 function startStopwatch() {
   seconds++;
 
-  if (seconds / 60 === 1) {
+  if (seconds === 60) {
     seconds = 0;
     minutes++;
   }
@@ -80,11 +81,10 @@ startBtn.addEventListener("click", () => {
   }
 });
 
-// PART II
-
+// results will be stored to an array
 let results = [];
 
-// l ievent listener on removeing item
+// event listener on removing item
 timesList.addEventListener("click", (e) => {
   if (e.target.className === "result-time") {
     removeTimeFromList(e);
@@ -108,8 +108,10 @@ function removeItemFromArray(id) {
   });
 }
 
-// render list fn
+// render list
 function renderTimesList() {
+  timesListWrapper.classList.remove("hide-element");
+
   let randomIdentifier = Math.random();
   let li = `
     <li id=${randomIdentifier}>
@@ -153,12 +155,10 @@ function calculateAndRenderTotal() {
       minutesTotal -= 60;
     }
   });
-  console.log(results.length);
-
-  calculationDiv.innerHTML = `
-  <span>
+  calculationDiv.innerHTML = `Your total time so far: 
+  <span class="calculation-total">
   ${hoursTotal}h
-  ${minutesTotal}m and 
+  ${minutesTotal}m
   ${secondsTotal}s
   </span>`;
 }

@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>STOPWATCH APP</title>
+    <title>STOPWATCH</title>
+    <link href="/favicon.ico" rel="icon" type="image/x-icon" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -14,11 +15,9 @@
       <button id="start-btn" class="start-btn-stopped">
         <span id="start-btn-text">START</span>
       </button>
-      <div id="times-list-wrapper">
+      <div id="times-list-wrapper" class="times-list-wrapper hide-element">
         <ol id="times-list"></ol>
-        <div id="calculation">
-          <!-- span here -->
-        </div>
+        <div id="calculation"></div>
       </div>
     </div>
     <script src="./app.js"></script>
