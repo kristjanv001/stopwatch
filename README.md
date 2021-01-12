@@ -11,3 +11,7 @@ Stopwatch provides an easy and clear way to record time just like a regular stop
 - HTML
 - CSS
 - JavaScript
+
+## Demo
+
+https://stopwatch-2020.netlify.app/
